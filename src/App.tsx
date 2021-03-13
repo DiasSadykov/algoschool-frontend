@@ -1,17 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
+import ProblemList from './Components/ProblemList/ProblemList';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
 import './App.css';
+import About from './Components/About/About';
+import Problem from './Components/Problem/Problem';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          <code> AlgoSchool is in progress...</code>
-        </p>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/about">
+          <About/>
+        </Route>
+        <Route path="/problem/:category/:id">
+          <Problem/>
+        </Route>
+        <Route path="/">
+          <ProblemList/>
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 

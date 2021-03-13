@@ -1,0 +1,84 @@
+%baseProblemWrapper{
+    padding:  8px  32px 8px 32px;
+    margin-bottom: 0px;
+    position: relative;
+    text-decoration: none;
+    :before {
+        content: "";
+        position: absolute;
+        left: 14px;
+        border-left: 2px solid #cbd5e0;
+        height: 100%;
+        width: 1px;
+        z-index: 1;
+    }
+    :after {
+        transition: 0.2s;
+        content: "";
+        width: 16px;
+        height: 16px;
+        border: 2px solid #cbd5e0;
+        background-color: #fff;
+        border-radius: 100%;
+        position: absolute;
+        left: 7px;
+        top: 13px;
+        z-index: 2;
+    }
+}
+
+%baseProblemWrapper:first-child{
+    ::before{
+        top: 13px;
+    }
+}
+%baseProblemWrapper:last-child{
+    ::before{
+        top: -12px;
+    }
+}
+
+.sectionWrapper{
+    padding-left: 14px;
+}
+
+.sectionTitle{
+    margin: 24px 0px 16px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.problemTitle{
+    color: black;
+    margin: 0;
+    font-size: 16px;
+    transition: 0.3s;
+    overflow: visible;
+}
+
+%baseProblemWrapper:hover{
+    background-color: #f7fafc;
+    border-radius: 10px;
+    :after {
+        width: 18px;
+        height: 18px;
+        left: 6px;
+        top: 11px;
+    }
+}
+
+.problemWrapper{
+    @extend %baseProblemWrapper;
+}
+
+.activeProblemWrapper{
+    @extend %baseProblemWrapper;
+    background-color: rgba(235,248,255, 1);
+    border-radius: 10px;
+    font-weight: 600;
+    &:hover{
+        background-color: rgba(235,248,255, 1);
+    }
+}
+
+

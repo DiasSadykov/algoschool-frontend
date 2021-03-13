@@ -1,0 +1,17 @@
+.sidebar{
+    height: 100%;
+    width: 340px;
+    position: fixed;
+    z-index: 1;
+    margin-top: 80px;
+    padding-right: 20px;
+    border-right: 1px solid #f0f0f0;
+    overflow: scroll
+}
+
+@media (max-width: 1280px) {
+    .sidebar{
+        display: none;
+        width: 0px;
+    }
+}
