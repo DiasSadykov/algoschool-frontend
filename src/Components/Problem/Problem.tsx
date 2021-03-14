@@ -59,6 +59,12 @@ function Problem() {
                                     </div>
                                 </div>
                                 <div className={styles.editor}>
+                                    <div className={styles.icons}>
+                                        <div className={styles.close} />
+                                        <div className={styles.minimize} />
+                                        <div className={styles.zoom} />
+                                    </div>
+
                                     <AceEditor className={styles.aceEditor} onChange={onChange} showPrintMargin={false} height="60%" width="100%" mode="python" theme="textmate" value={code ? code : currentProblem.codeSnippet} enableBasicAutocompletion={true} showGutter={false} enableLiveAutocompletion={true} setOptions={{
                                         enableLiveAutocompletion: true,
                                         enableSnippets: false,
@@ -71,7 +77,7 @@ function Problem() {
                             </div>
                         </>
                         : <Result
-                            style = {{marginTop: "100px"}}
+                            style={{ marginTop: "100px" }}
                             status="404"
                             title="403"
                             subTitle="Sorry, the page you visited does not exist."

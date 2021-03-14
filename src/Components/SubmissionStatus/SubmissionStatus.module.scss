@@ -1,10 +1,13 @@
-.controls{
+.wrapper{
     position: absolute;
+    padding-top: 20px;
+    width: 50%;
+    height: 30%;
+}
+
+.controls{
     display: flex;
     flex-direction: column;
-    padding-top: 20px;
-    width: 70%;
-    height: 30%;
 }
 
 .acceptedTitle{
@@ -52,4 +55,12 @@
     display: flex;
     flex: 1 1 0%;
     overflow-x: auto;
+}
+
+@media (max-width: 945px) {
+    .wrapper{
+        position: relative;
+        height: auto;
+        width: 80%;
+    }
 }
