@@ -1,12 +1,14 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom'
 import { getCurrentSubmissionStatus, getIsSubmissionFetching } from '../../Selectors/submission';
 import styles from './SubmissionStatus.module.scss'
 import { Skeleton } from 'antd';
 
 
 function SubmissionStatus() {
-    const submissionStatus = useSelector(getCurrentSubmissionStatus)
+    const { id } = useParams()
+    const submissionStatus = useSelector(getCurrentSubmissionStatus(id))
     const isFetching = useSelector(getIsSubmissionFetching)
     return (
         <div className={styles.wrapper}>

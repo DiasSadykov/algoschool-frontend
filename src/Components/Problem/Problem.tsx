@@ -1,5 +1,5 @@
 import { Layout, Result } from 'antd'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useParams } from 'react-router-dom'
 import Sidebar from '../Sidebar/Sidebar'
 import Navbar from '../Navbar/Navbar'
@@ -10,34 +10,19 @@ import "ace-builds/src-noconflict/theme-textmate";
 import "ace-builds/src-noconflict/ext-language_tools.js";
 import SubmissionStatus from '../SubmissionStatus/SubmissionStatus'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAllProblems, isFetchingProblems } from '../../Selectors/problems'
-import { setCodeForProblem, setCurrentProblem, submitCode } from '../../Actions/user'
-import { getCodeForCurrentProblem } from '../../Selectors/user'
-import { fetchProblems } from '../../Actions/problems'
+import { getCurrentProblem, isFetchingProblems } from '../../Selectors/problems'
+import { setCodeForProblem, submitCode  } from '../../Actions/problems'
 import Loading from '../Loading/Loading'
 import Emoji from '../Emoji/Emoji'
-function Problem() {
-    const { category, id } = useParams()
-    const problems = useSelector(getAllProblems)
-    const isFetching = useSelector(isFetchingProblems)
-    const code = useSelector(getCodeForCurrentProblem)
-    const dispatch = useDispatch()
-    const currentProblem = problems.filter(problemSet => problemSet.category === category)[0]?.problems.filter(problem => problem.id === id)[0]
 
-    useEffect(() => {
-        if (isFetching) {
-            dispatch(fetchProblems)
-        }
-        else if (currentProblem) {
-            dispatch(setCurrentProblem(currentProblem))
-            if (!code) {
-                dispatch(setCodeForProblem(id, currentProblem.codeSnippet))
-            }
-        }
-    });
+function Problem() {
+    const { id } = useParams()
+    const currentProblem = useSelector(getCurrentProblem(id))
+    const isFetching = useSelector(isFetchingProblems)
+    const dispatch = useDispatch()
 
     function onSubmit() {
-        dispatch(submitCode)
+        dispatch(submitCode(id))
     }
 
     function onChange(value) {
@@ -65,7 +50,7 @@ function Problem() {
                                         <div className={styles.zoom} />
                                     </div>
 
-                                    <AceEditor className={styles.aceEditor} onChange={onChange} showPrintMargin={false} height="60%" width="100%" mode="python" theme="textmate" value={code ? code : currentProblem.codeSnippet} enableBasicAutocompletion={true} showGutter={false} enableLiveAutocompletion={true} setOptions={{
+                                    <AceEditor className={styles.aceEditor} onChange={onChange} showPrintMargin={false} height="60%" width="100%" mode="python" theme="textmate" value={currentProblem.codeSnippet} enableBasicAutocompletion={true} showGutter={false} enableLiveAutocompletion={true} setOptions={{
                                         enableLiveAutocompletion: true,
                                         enableSnippets: false,
                                         showLineNumbers: false,

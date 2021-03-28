@@ -15,7 +15,6 @@ const { SubMenu } = Menu;
 function Navbar() {
     const [loginVisible, setLoginVisible] = useState(false)
     const [isLoggedIn, user] = useSelector(getLoggedInAndUser)
-    console.log(user)
     return (
         <Header style={{ position: 'fixed', zIndex: 1000, width: '100%' }}>
             <Logo />

@@ -15,9 +15,9 @@ function About() {
                         <Space direction="vertical" size="large">
                             <Paragraph>
                                 <Title> About <Emoji symbol="🗿" /></Title>
-                                <Text> This page is another attempt to make the Tech companies application process
+                                <Text> This page is an another attempt to make Tech companies application process
                                 less stressfull and more enjoyable. The website/app provides a number of the most popular
-                                and skill intensive problems which <i>you may and may not</i> encounter with text and video explanations.
+                                and skill intensive problems which <i>you may and may not</i> encounter during your interviews with text and video explanations.
                             </Text>
                             </Paragraph>
                             <Paragraph>

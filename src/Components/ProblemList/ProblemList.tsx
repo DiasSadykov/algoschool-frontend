@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React from 'react'
+import { useSelector } from 'react-redux'
 import { Layout, Typography, Row, Col, Image } from 'antd'
 import Logo from '../Logo/Logo';
 import programming from "./images/programming.png"
@@ -7,7 +7,6 @@ import ProblemSection from '../ProblemSection/ProblemSection';
 import Emoji from '../Emoji/Emoji';
 import Navbar from '../Navbar/Navbar';
 import { getAllProblems, isFetchingProblems } from '../../Selectors/problems';
-import { fetchProblems } from '../../Actions/problems';
 import Loading from '../Loading/Loading';
 
 const { Title } = Typography
@@ -16,13 +15,7 @@ const { Content } = Layout
 function ProblemList() {
     const problems = useSelector(getAllProblems)
     const isFetching = useSelector(isFetchingProblems)
-    const dispatch = useDispatch()
 
-    useEffect(() => {
-        if (isFetching) {
-            dispatch(fetchProblems)
-        }
-    });
     return (
         <>
         { isFetching ? <Loading /> :
@@ -31,7 +24,7 @@ function ProblemList() {
             <Content style={{ marginBottom: 500, marginTop: 100 }}>
                 <Row justify="center">
                     <Col xs={18} md={12} sm={12}>
-                        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", marginTop:"4rem" }}>
                             <Logo fontSize={"4rem"} />
                             <Title style = {{color:"#a0aec0", fontSize:"1.5rem", textAlign:"center", marginBottom:"4rem"}}>Everything you need for coding interviews, in one platform<Emoji symbol="🧑‍💻"/></Title>
                         </div>

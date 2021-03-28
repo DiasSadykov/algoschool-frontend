@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { Problem } from '../../Reducers/problems'
 import { getCurrentProblem } from '../../Selectors/problems'
 import styles from './SidebarProblemSection.module.scss'
+import { useParams } from 'react-router-dom'
 
 type Props = {
     problems: Problem[]
@@ -20,7 +21,8 @@ const renderProblems = (problems: Problem[], category: string, currentProblemId:
 }
 
 function ProblemSection(props: Props) {
-    const currentProblem = useSelector(getCurrentProblem)
+    const { id } = useParams()
+    const currentProblem = useSelector(getCurrentProblem(id))
     return (
         <div className={styles.sectionWrapper} >
             <p className={styles.sectionTitle}>{props.sectionTitle}</p>

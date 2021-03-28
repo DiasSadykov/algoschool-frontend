@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, SET_CODE_FOR_PROBLEM, SET_CURRENT_PROBLEM } from "../Actions/user";
+import { LOGIN, LOGOUT } from "../Actions/user";
 import firebase from "firebase/app"
 
 export interface Problem {
@@ -28,21 +28,6 @@ const initialState: User = {
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case SET_CURRENT_PROBLEM: {
-            return {
-                ...state,
-                currentProblem: action.payload.problem
-            };
-        }
-        case SET_CODE_FOR_PROBLEM: {
-            return {
-                ...state,
-                code: {
-                    ...state.code,
-                   [action.payload.id]: action.payload.code,
-                }
-            };
-        }
         case LOGIN: {
             return {
                 ...state,

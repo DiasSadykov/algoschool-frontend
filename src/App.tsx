@@ -11,11 +11,12 @@ import Problem from './Components/Problem/Problem';
 import { useDispatch } from 'react-redux';
 import firebase from './firebase';
 import { login, logout } from './Actions/user';
+import { fetchProblems } from './Actions/problems';
 function App() {
   const dispatch = useDispatch()
   useEffect(() => {
+    dispatch(fetchProblems)
     const unregisterAuthObserver = firebase.auth().onAuthStateChanged(user => {
-        console.log(user)
         if (user){
             dispatch(login(user))
         } else {

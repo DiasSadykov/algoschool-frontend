@@ -4,4 +4,4 @@ export const getAllProblems = (state: RootState) => state.problems.problemSets
 
 export const isFetchingProblems = (state: RootState) => state.problems.fetching
 
-export const getCurrentProblem = (state: RootState) => state.user.currentProblem
+export const getCurrentProblem = (id: string) => (state: RootState) => state.problems.problemsByIds[id]

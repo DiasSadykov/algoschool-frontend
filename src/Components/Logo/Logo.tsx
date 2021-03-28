@@ -10,7 +10,7 @@ function Logo(props) {
     return (
         <div className="logo">
             <Link to="/">
-                <Text style={{fontSize: props.fontSize, color: '#2d3748'}} >Algo<span style={{ color: "#4299e1"}}>.school</span></Text>
+                <Text style={{fontSize: props.fontSize, color: '#2d3748'}} >Algorithms<span style={{ color: "#4299e1"}}>.school</span></Text>
             </Link>
         </div>
     )

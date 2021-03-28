@@ -1,5 +1,5 @@
 import { RootState } from "../Reducers";
 
-export const getCurrentSubmissionStatus = (state: RootState) => state.submission.submissions[state.user.currentProblem?.id]
+export const getCurrentSubmissionStatus = (id: string) => (state: RootState) => state.submission.submissions[id]
 
 export const getIsSubmissionFetching = (state: RootState) => state.submission.fetching
