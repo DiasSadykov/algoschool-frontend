@@ -1,9 +1,8 @@
-import { Layout, Result } from 'antd'
+import { Result } from 'antd'
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import Sidebar from '../Sidebar/Sidebar'
 import Navbar from '../Navbar/Navbar'
-import styles from './Problem.module.scss'
 import AceEditor from 'react-ace';
 import "ace-builds/src-noconflict/mode-python";
 import "ace-builds/src-noconflict/theme-textmate";
@@ -32,32 +31,26 @@ function Problem() {
     return (
         <>
             { isFetching ? <Loading /> :
-                <Layout>
+                <div>
                     <Navbar />
                     {currentProblem ?
                         <>
                             <Sidebar />
-                            <div className={styles.wrapper}>
-                                <div className={styles.problemWrapper}>
-                                    <div className={styles.problemTitle}>{currentProblem.title}</div>
-                                    <div dangerouslySetInnerHTML={{ __html: currentProblem.description }} className={styles.description}>
+                            <div className="dark:bg-gray-800 dark:text-gray-50 flex h-full flex-col md:w-full md:flex-row lg:w-4/5 w-full overflow-scroll fixed top-0 right-0 pt-20">
+                                <div className="pl-5 pr-5 pb-5 overflow-scroll w-full h-2/5 md:h-full md:w-2/5">
+                                    <div className="font-extrabold text-3xl mb-3">{currentProblem.title}</div>
+                                    <div dangerouslySetInnerHTML={{ __html: currentProblem.description }} className="text-sm font-normal">
                                     </div>
                                 </div>
-                                <div className={styles.editor}>
-                                    <div className={styles.icons}>
-                                        <div className={styles.close} />
-                                        <div className={styles.minimize} />
-                                        <div className={styles.zoom} />
-                                    </div>
-
-                                    <AceEditor className={styles.aceEditor} onChange={onChange} showPrintMargin={false} height="60%" width="100%" mode="python" theme="textmate" value={currentProblem.codeSnippet} enableBasicAutocompletion={true} showGutter={false} enableLiveAutocompletion={true} setOptions={{
+                                <div className="dark:bg-gray-700 w-full md:w-3/5 h-full relative pr-5 pl-5 pt-5 bg-gray-100 rounded-tl-xl shadow-2xl">
+                                    <AceEditor className="rounded-md shadow-lg" onChange={onChange} showPrintMargin={false} height="60%" width="100%" mode="python" theme="textmate" value={currentProblem.codeSnippet} enableBasicAutocompletion={true} showGutter={false} enableLiveAutocompletion={true} setOptions={{
                                         enableLiveAutocompletion: true,
                                         enableSnippets: false,
                                         showLineNumbers: false,
                                         tabSize: 2,
                                     }} />
                                     <SubmissionStatus />
-                                    <button onClick={onSubmit} className={styles.submitButton}>Submit <Emoji symbol="🍪" /></button>
+                                    <button onClick={onSubmit} className="bg-blue-600 hover:bg-blue-700 absolute bottom-5 right-5 text-white text-sm font-medium py-2 px-4 border-b-4 border-blue-700 hover:border-blue-800 rounded focus:outline-none">Submit <Emoji symbol="🍪" /></button>
                                 </div>
                             </div>
                         </>
@@ -67,7 +60,7 @@ function Problem() {
                             title="403"
                             subTitle="Sorry, the page you visited does not exist."
                         />}
-                </Layout>
+                </div>
             }
         </>
 

@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@craco/craco": "5.8.0",
+    "@tailwindcss/postcss7-compat": "^2.1.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -12,9 +14,12 @@
     "@types/react-dom": "^16.9.0",
     "@types/react-redux": "^7.1.16",
     "antd": "^4.8.0",
+    "autoprefixer": "^9",
     "axios": "^0.21.1",
+    "classnames": "^2.3.1",
     "firebase": "^8.3.0",
     "node-sass": "4.14.1",
+    "postcss": "^7",
     "react": "^16.13.1",
     "react-ace": "^9.3.0",
     "react-dom": "^16.13.1",
@@ -25,12 +30,13 @@
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.3.0",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "typescript": "~3.7.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build && echo '/* /index.html  200' | cat >build/_redirects",
-    "test": "react-scripts test",
+    "start": "craco start",
+    "build": "craco build && echo '/* /index.html  200' | cat >build/_redirects",
+    "test": "craco test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

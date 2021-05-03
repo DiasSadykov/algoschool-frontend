@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Layout, Typography, Row, Col, Image } from 'antd'
+import { Image } from 'antd'
 import Logo from '../Logo/Logo';
 import programming from "./images/programming.png"
 import ProblemSection from '../ProblemSection/ProblemSection';
@@ -9,34 +9,27 @@ import Navbar from '../Navbar/Navbar';
 import { getAllProblems, isFetchingProblems } from '../../Selectors/problems';
 import Loading from '../Loading/Loading';
 
-const { Title } = Typography
-const { Content } = Layout
-
 function ProblemList() {
     const problems = useSelector(getAllProblems)
     const isFetching = useSelector(isFetchingProblems)
 
     return (
         <>
-        { isFetching ? <Loading /> :
-        <Layout>
-            <Navbar />
-            <Content style={{ marginBottom: 500, marginTop: 100 }}>
-                <Row justify="center">
-                    <Col xs={18} md={12} sm={12}>
-                        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", marginTop:"4rem" }}>
-                            <Logo fontSize={"4rem"} />
-                            <Title style = {{color:"#a0aec0", fontSize:"1.5rem", textAlign:"center", marginBottom:"4rem"}}>Everything you need for coding interviews, in one platform<Emoji symbol="🧑‍💻"/></Title>
+            { isFetching ? <Loading /> :
+                <div className="dark:bg-gray-800 h-full">
+                    <Navbar />
+                    <div className="flex flex-col justify-center pt-40">
+                        <div className="text-4xl md:text-6xl font-extrabold">
+                            <Logo />
                         </div>
-                        {problems.map(problemSet=><ProblemSection sectionTitle={problemSet.category} problems={problemSet.problems}/>)}
-                        <div style={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
-                            <Image width="25rem" src={programming}></Image>
-                        </div>
-                    </Col>
-                </Row>
-            </Content>
-        </Layout>
-        }
+                        <p className="text-gray-400 text-xl md:text-2xl mt-2 mb-14 text-center">Everything you need for coding interviews, in one platform<Emoji symbol="🧑‍💻" /></p>
+                    </div>
+                    {problems.map(problemSet => <ProblemSection key={problemSet.category} sectionTitle={problemSet.category} problems={problemSet.problems} />)}
+                    <div style={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
+                        <Image width="25rem" src={programming}></Image>
+                    </div>
+                </div>
+            }
         </>
     )
 }
