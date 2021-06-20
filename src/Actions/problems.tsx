@@ -1,7 +1,8 @@
 import { ProblemSet } from "../Reducers/problems";
 import axios from 'axios'
-import firebase from '../firebase';
 import { setFetchingSubmission, setSubmissionStatus } from './submission';
+import { SubmissionStatus } from "../Reducers/submission";
+import { setProblemAccepted } from "../_api/firebase";
 
 export const SET_PROBLEMS = "SET_PROBLEMS";
 export const SET_CODE_FOR_PROBLEM = "SET_CODE_FOR_PROBLEM";
@@ -31,8 +32,8 @@ export async function fetchProblems(dispatch, getState) {
       });
 }
 
-export function submitCode(id: number) {
-  return async function _submitCode(dispatch, getState) {
+
+export const submitCode = id => async (dispatch, getState) => {
       dispatch(setFetchingSubmission(true))
       const state = getState()
       const currentProblem = state.problems.problemsByIds[id]
@@ -42,21 +43,21 @@ export function submitCode(id: number) {
           problem_id: currentProblem.id
         })
         .then(function (response) {
+          const result: SubmissionStatus = response.data
           dispatch(setSubmissionStatus(currentProblem.id, {
-              status: response.data.status,
-              message: response.data.message,
-              expected: response.data.expected,
-              input: response.data.input,
-              result: response.data.result
+            status: result.status,
+            message: result.message,
+            expected: result.expected,
+            input: result.input,
+            result: result.result
           }))
-          const db = firebase.firestore()
-          db.collection("users").doc(state.user.user.uid).set({"CompletedProblems": {
-              [currentProblem.id]: true
-          }}, {merge: true});
+          if (result.status === "Accepted") {
+            setProblemAccepted(currentProblem.id, state.user.user.uid)
+          }
         })
         .catch(function (error) {
           console.log(error);
         });
       dispatch(setFetchingSubmission(false))
   }
-}
+

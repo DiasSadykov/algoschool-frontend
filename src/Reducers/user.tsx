@@ -1,5 +1,10 @@
-import { LOGIN, LOGOUT } from "../Actions/user";
+import { LOGIN, LOGOUT, SET_USER_DATA, UNSET_USER_DATA, SET_DARK_MODE } from "../Actions/user";
 import firebase from "firebase/app"
+import { getDarkModeFromLocalStorage } from "../_api/localStorage";
+
+export interface UserData{
+    completedProblems: Set<string>
+}
 
 export interface Problem {
     title: string,
@@ -15,15 +20,15 @@ export interface Code {
 export interface User {
     isLoggedIn: boolean
     user?: firebase.User
-    currentProblem?: Problem
-    code: Code
+    completedProblems: Set<string>
+    darkMode: boolean
 }
 
 const initialState: User = {
     isLoggedIn: false,
     user: undefined,
-    currentProblem: undefined,
-    code: {},
+    completedProblems: new Set([]),
+    darkMode: getDarkModeFromLocalStorage()
 };
 
 export default function (state = initialState, action) {
@@ -40,6 +45,23 @@ export default function (state = initialState, action) {
                 ...state,
                 isLoggedIn: false,
                 user: undefined,
+            };
+        }
+        case SET_USER_DATA: {
+            return {
+                ...state,
+                completedProblems: action.payload.completedProblems,
+            };
+        }
+        case UNSET_USER_DATA: {
+            return {
+                ...initialState
+            }
+        }
+        case SET_DARK_MODE: {
+            return {
+                ...state,
+                darkMode: action.payload.darkMode,
             };
         }
         default:

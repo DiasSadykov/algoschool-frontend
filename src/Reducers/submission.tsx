@@ -1,7 +1,9 @@
 import { SET_FETCHING_SUBMISSIONS, SET_SUBMISSION_STATUS } from "../Actions/submission";
 
+export type SubmissionStatuses = "Accepted" | "Runtime Error" | "Timeout" | "Wrong Answer"
+
 export interface SubmissionStatus {
-    status: string
+    status: SubmissionStatuses
     message?: string
     expected?: any
     input?: any
