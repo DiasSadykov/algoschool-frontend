@@ -14,7 +14,7 @@ type Props = {
 const renderProblems = (problems: Problem[], category: string, currentProblemId: string, completedProblems: Set<string>) => {
     return (
         problems.map(problem => {
-            return <Link className="bullet dark:text-gray-200 dark:hover:text-gray-900 text-gray-700 pt-2 pb-2 rounded-md pr-8 mr-2 pl-8 transition easy-in-out duration-100 hover:bg-gray-100" to={`/problem/${category}/${problem.id}`}>{problem.title}</Link>
+            return <Link key={problem.id} className="bullet dark:text-gray-200 dark:hover:text-gray-900 text-gray-700 pt-2 pb-2 rounded-md pr-8 mr-2 pl-8 transition easy-in-out duration-100 hover:bg-gray-100" to={`/problem/${category}/${problem.id}`}>{problem.title}</Link>
         }
         )
     )
