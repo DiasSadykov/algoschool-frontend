@@ -24,7 +24,7 @@ function ProblemList() {
                         </div>
                         <p className="text-gray-400 text-xl md:text-2xl mt-2 mb-14 text-center">Everything you need for coding interviews, in one platform<Emoji symbol="🧑‍💻" /></p>
                     </div>
-                    {problems.map(problemSet => <ProblemSection key={problemSet.category} sectionTitle={problemSet.category} problems={problemSet.problems} />)}
+                    {problems.map(problemSet => <ProblemSection key={problemSet.blockTitle} sectionTitle={problemSet.blockTitle} problems={problemSet.problems} />)}
                     <div style={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
                         <Image width="25rem" src={programming}></Image>
                     </div>

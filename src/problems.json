@@ -1,0 +1,19 @@
+{
+  "courseBlocks": [
+    {
+      "blockTitle": "Simple Problems",
+      "blockItems": [
+        {
+          "itemType": "problem",
+          "itemTitle": "A plus B",
+          "itemId": "a_plus_b"
+        },
+        {
+          "itemType": "problem",
+          "itemTitle": "Two Sum",
+          "itemId": "two_sum"
+        }
+      ]
+    }
+  ]
+}

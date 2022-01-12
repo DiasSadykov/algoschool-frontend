@@ -8,8 +8,8 @@ export interface Problem {
     codeSnippet: string
 }
 
-export interface ProblemSet {
-    category: string,
+export interface courseBlock {
+    blockTitle: string,
     problems: Problem[]
 }
 
@@ -18,7 +18,7 @@ export interface ProblemsByIds {
 }
 
 export interface ProblemsState {
-    problemSets: ProblemSet[],
+    problemSets: courseBlock[],
     problemsByIds: ProblemsByIds,
     fetching: boolean
 }

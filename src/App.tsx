@@ -35,7 +35,7 @@ function App() {
         <Route path="/about">
           <About/>
         </Route>
-        <Route path="/problem/:category/:id">
+        <Route path="/problem/:blockTitle/:id">
           <Problem/>
         </Route>
         <Route path="/">
