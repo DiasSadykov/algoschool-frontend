@@ -36,8 +36,8 @@ function Problem() {
                     {currentProblem ?
                         <>
                             <Sidebar />
-                            <div className="dark:bg-gray-800 dark:text-gray-50 flex h-full flex-col md:w-full md:flex-row lg:w-4/5 w-full overflow-scroll fixed top-0 right-0 pt-20">
-                                <div className="pl-5 pr-5 pb-5 overflow-scroll w-full h-2/5 md:h-full md:w-2/5">
+                            <div className="dark:bg-gray-800 dark:text-gray-50 flex h-full overflow-auto flex-col md:w-full md:flex-row lg:w-4/5 w-full fixed top-0 right-0 pt-20">
+                                <div className="dark:bg-gray-800 pl-5 pr-5 pb-5 w-full overflow-auto  md:h-full md:w-2/5">
                                     <div className="font-extrabold text-3xl mb-3">{currentProblem.title}</div>
                                     <div dangerouslySetInnerHTML={{ __html: currentProblem.description }} className="text-sm font-normal">
                                     </div>

@@ -1,5 +1,5 @@
 import { UserData } from "../Reducers/user";
-import { getUserData } from "../_api/firebase";
+import { getUserData, setToken } from "../_api/backend";
 import { setDarkModeToLocalStorage } from "../_api/localStorage";
 
 export const LOGIN = "LOGIN";
@@ -8,17 +8,30 @@ export const SET_USER_DATA = "SET_USER_DATA"
 export const UNSET_USER_DATA = "UNSET_USER_DATA"
 export const SET_DARK_MODE = "SET_DARK_MODE"
 
-export const login = user => ({
+export const _login = user => ({
     type: LOGIN,
     payload: {
         user: user,
     }
 })
 
-export const logout = () => ({
+export const login = user => async (dispatch, getState) => {
+    dispatch(_login(user))
+    let token = await user.getIdToken()
+    setToken(token)
+    dispatch(fetchUserData(user.uid))
+}
+
+export const _logout = () => ({
     type: LOGOUT,
     payload: {}
 })
+
+export const logout = () => async (dispatch, getState) => {
+    dispatch(_logout())
+    setToken("")
+    dispatch(unsetUserData())
+}
 
 export const _setDarkMode = (darkMode: boolean) => ({
     type: SET_DARK_MODE,
@@ -50,10 +63,7 @@ export const unsetUserData = () => ({
 
 export const fetchUserData = userId => async (dispatch, getState) => {
     getUserData(userId).then(userDataRaw => {
-        let completedProblemsRaw = userDataRaw.get("CompletedProblems")
-        let userData: UserData = {
-            completedProblems: completedProblemsRaw ? new Set(Object.keys(completedProblemsRaw)) : new Set()
-        }
-        dispatch(setUserData(userData))
+        console.log(userDataRaw)
+        // dispatch(setUserData(userData))
     })
 }
