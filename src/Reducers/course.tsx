@@ -1,5 +1,5 @@
-import { SET_PROBLEMS } from "../Actions/problems";
-import { SET_CODE_FOR_PROBLEM } from "../Actions/problems"
+import { SET_PROBLEMS } from "../Actions/course";
+import { SET_CODE_FOR_PROBLEM } from "../Actions/course"
 
 export interface BlockItem {
     itemType: string,

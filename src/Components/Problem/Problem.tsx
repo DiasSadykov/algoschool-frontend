@@ -9,15 +9,15 @@ import "ace-builds/src-noconflict/theme-textmate";
 import "ace-builds/src-noconflict/ext-language_tools.js";
 import SubmissionStatus from '../SubmissionStatus/SubmissionStatus'
 import { useDispatch, useSelector } from 'react-redux'
-import { getCurrentProblem, isFetchingProblems } from '../../Selectors/problems'
-import { setCodeForProblem, submitCode  } from '../../Actions/problems'
+import { getCurrentProblem, isFetchingCourse } from '../../Selectors/course'
+import { setCodeForProblem, submitCode  } from '../../Actions/course'
 import Loading from '../Loading/Loading'
 import Emoji from '../Emoji/Emoji'
 
 function Problem() {
     const { id } = useParams()
     const currentProblem = useSelector(getCurrentProblem(id))
-    const isFetching = useSelector(isFetchingProblems)
+    const isFetching = useSelector(isFetchingCourse)
     const dispatch = useDispatch()
 
     function onSubmit() {

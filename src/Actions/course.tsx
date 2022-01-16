@@ -1,4 +1,4 @@
-import { courseBlock } from "../Reducers/problems";
+import { courseBlock } from "../Reducers/course";
 import axios from 'axios'
 import { setFetchingSubmission, setSubmissionStatus } from './submission';
 import { SubmissionStatus } from "../Reducers/submission";

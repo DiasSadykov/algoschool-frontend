@@ -1,8 +1,8 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { BlockItem } from '../../Reducers/problems'
-import { getCurrentProblem } from '../../Selectors/problems'
+import { BlockItem } from '../../Reducers/course'
+import { getCurrentProblem } from '../../Selectors/course'
 import { useParams } from 'react-router-dom'
 import { getCompletedProblems } from '../../Selectors/user'
 

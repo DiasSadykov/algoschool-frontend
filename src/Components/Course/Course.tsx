@@ -6,12 +6,12 @@ import programming from "./images/programming.png"
 import CourseBlock from '../CourseBlock/CourseBlock';
 import Emoji from '../Emoji/Emoji';
 import Navbar from '../Navbar/Navbar';
-import { getAllProblems, isFetchingProblems } from '../../Selectors/problems';
+import { getCourse, isFetchingCourse } from '../../Selectors/course';
 import Loading from '../Loading/Loading';
 
 function Course() {
-    const problems = useSelector(getAllProblems)
-    const isFetching = useSelector(isFetchingProblems)
+    const course = useSelector(getCourse)
+    const isFetching = useSelector(isFetchingCourse)
 
     return (
         <>
@@ -24,7 +24,7 @@ function Course() {
                         </div>
                         <p className="text-gray-400 text-xl md:text-2xl mt-2 mb-14 text-center">Everything you need for coding interviews, in one platform<Emoji symbol="🧑‍💻" /></p>
                     </div>
-                    {problems.map(problemSet => <CourseBlock key={problemSet.blockTitle} sectionTitle={problemSet.blockTitle} problems={problemSet.blockItems} />)}
+                    {course.map(courseBlock => <CourseBlock key={courseBlock.blockTitle} sectionTitle={courseBlock.blockTitle} blockItems={courseBlock.blockItems} />)}
                     <div style={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
                         <Image width="25rem" src={programming}></Image>
                     </div>

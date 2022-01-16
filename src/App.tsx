@@ -10,7 +10,7 @@ import Problem from './Components/Problem/Problem';
 import { useDispatch, useSelector } from 'react-redux';
 import firebase from './firebase';
 import { login, logout, setDarkMode } from './Actions/user';
-import { fetchProblems } from './Actions/problems';
+import { fetchProblems } from './Actions/course';
 import { getDarkMode } from './Selectors/user';
 
 
@@ -35,7 +35,10 @@ function App() {
         <Route path="/about">
           <About/>
         </Route>
-        <Route path="/problem/:blockTitle/:id">
+        <Route path="/problem/:id">
+          <Problem/>
+        </Route>
+        <Route path="/article/:id">
           <Problem/>
         </Route>
         <Route path="/">
