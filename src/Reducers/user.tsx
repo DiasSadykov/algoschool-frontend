@@ -6,7 +6,7 @@ export interface UserData{
     completedProblems: Set<string>
 }
 
-export interface Problem {
+export interface BlockItem {
     title: string,
     id: string,
     description: string,

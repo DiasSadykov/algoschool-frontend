@@ -1,30 +1,31 @@
 import { SET_PROBLEMS } from "../Actions/problems";
 import { SET_CODE_FOR_PROBLEM } from "../Actions/problems"
 
-export interface Problem {
-    title: string,
-    id: string,
+export interface BlockItem {
+    itemType: string,
+    itemTitle: string,
+    itemId: string,
     description: string,
     codeSnippet: string
 }
 
 export interface courseBlock {
     blockTitle: string,
-    problems: Problem[]
+    blockItems: BlockItem[]
 }
 
 export interface ProblemsByIds {
-    [key: string]: Problem;
+    [key: string]: BlockItem;
 }
 
 export interface ProblemsState {
-    problemSets: courseBlock[],
+    courseBlocks: courseBlock[],
     problemsByIds: ProblemsByIds,
     fetching: boolean
 }
 
 const initialState: ProblemsState = {
-    problemSets: [],
+    courseBlocks: [],
     problemsByIds: {},
     fetching: true,
 };
@@ -34,14 +35,14 @@ export default function (state = initialState, action) {
         case SET_PROBLEMS: {
             let problemsByIds: ProblemsByIds = {}
             action.payload.problems.forEach(problemSet => {
-                problemSet.problems.forEach(problem => {
-                    problemsByIds[problem.id] = problem
+                problemSet.blockItems.forEach(problem => {
+                    problemsByIds[problem.itemId] = problem
                 });
             });
             return {
                 ...state,
                 fetching: false,
-                problemSets: action.payload.problems,
+                courseBlocks: action.payload.problems,
                 problemsByIds: problemsByIds
             }
         }

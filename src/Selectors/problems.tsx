@@ -1,6 +1,6 @@
 import { RootState } from "../Reducers";
 
-export const getAllProblems = (state: RootState) => state.problems.problemSets
+export const getAllProblems = (state: RootState) => state.problems.courseBlocks
 
 export const isFetchingProblems = (state: RootState) => state.problems.fetching
 

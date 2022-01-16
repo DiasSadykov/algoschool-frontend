@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import ProblemList from './Components/ProblemList/ProblemList';
+import Course from './Components/Course/Course';
 import {
   BrowserRouter as Router,
   Switch,
@@ -39,7 +39,7 @@ function App() {
           <Problem/>
         </Route>
         <Route path="/">
-          <ProblemList/>
+          <Course/>
         </Route>
       </Switch>
     </Router>
