@@ -9,14 +9,14 @@ import "ace-builds/src-noconflict/theme-textmate";
 import "ace-builds/src-noconflict/ext-language_tools.js";
 import SubmissionStatus from '../SubmissionStatus/SubmissionStatus'
 import { useDispatch, useSelector } from 'react-redux'
-import { getCurrentProblem, isFetchingCourse } from '../../Selectors/course'
+import { getCurrentItem, isFetchingCourse } from '../../Selectors/course'
 import { setCodeForProblem, submitCode  } from '../../Actions/course'
 import Loading from '../Loading/Loading'
 import Emoji from '../Emoji/Emoji'
 
 function Problem() {
     const { id } = useParams()
-    const currentProblem = useSelector(getCurrentProblem(id))
+    const currentProblem = useSelector(getCurrentItem(id))
     const isFetching = useSelector(isFetchingCourse)
     const dispatch = useDispatch()
 
@@ -39,7 +39,7 @@ function Problem() {
                             <div className="dark:bg-gray-800 dark:text-gray-50 flex h-full overflow-auto flex-col md:w-full md:flex-row lg:w-4/5 w-full fixed top-0 right-0 pt-20">
                                 <div className="dark:bg-gray-800 pl-5 pr-5 pb-5 w-full overflow-auto  md:h-full md:w-2/5">
                                     <div className="font-extrabold text-3xl mb-3">{currentProblem.itemTitle}</div>
-                                    <div dangerouslySetInnerHTML={{ __html: currentProblem.description }} className="text-sm font-normal">
+                                    <div dangerouslySetInnerHTML={{ __html: currentProblem.description as string }} className="text-sm font-normal">
                                     </div>
                                 </div>
                                 <div className="dark:bg-gray-700 w-full md:w-3/5 h-full relative pr-5 pl-5 pt-5 bg-gray-100 rounded-tl-xl shadow-2xl">

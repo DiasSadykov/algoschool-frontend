@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import About from './Components/About/About';
 import Problem from './Components/Problem/Problem';
+import Article from './Components/Article/Article';
 import { useDispatch, useSelector } from 'react-redux';
 import firebase from './firebase';
 import { login, logout, setDarkMode } from './Actions/user';
@@ -39,7 +40,7 @@ function App() {
           <Problem/>
         </Route>
         <Route path="/article/:id">
-          <Problem/>
+          <Article/>
         </Route>
         <Route path="/">
           <Course/>

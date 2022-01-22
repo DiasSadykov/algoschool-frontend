@@ -1,24 +1,34 @@
 import { SET_PROBLEMS } from "../Actions/course";
 import { SET_CODE_FOR_PROBLEM } from "../Actions/course"
 
-export interface BlockItem {
+export type BlockItemBase = {
     itemType: string,
     itemTitle: string,
     itemId: string,
-    description: string,
-    codeSnippet: string
 }
 
-export interface courseBlock {
+export type Article = BlockItemBase & {
+    readingTime?: string,
+    html?: string
+}
+
+export type Problem = BlockItemBase & {
+    description?: string,
+    codeSnippet?: string
+}
+
+export type BlockItem = Article & Problem
+
+export type courseBlock = {
     blockTitle: string,
     blockItems: BlockItem[]
 }
 
-export interface ProblemsByIds {
+export type ProblemsByIds = {
     [key: string]: BlockItem;
 }
 
-export interface ProblemsState {
+export type ProblemsState = {
     courseBlocks: courseBlock[],
     problemsByIds: ProblemsByIds,
     fetching: boolean
