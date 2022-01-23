@@ -11,7 +11,7 @@ import Article from './Components/Article/Article';
 import { useDispatch, useSelector } from 'react-redux';
 import firebase from './firebase';
 import { login, logout, setDarkMode } from './Actions/user';
-import { fetchProblems } from './Actions/course';
+import { fetchCourse } from './Actions/course';
 import { getDarkMode } from './Selectors/user';
 
 
@@ -20,10 +20,14 @@ function App() {
   const darkMode = useSelector(getDarkMode)
   dispatch(setDarkMode(darkMode))
   useEffect(() => {
-    dispatch(fetchProblems)
+    dispatch(fetchCourse)
     const unregisterAuthObserver = firebase.auth().onAuthStateChanged(user => {
         if (user){
             dispatch(login(user))
+            user.getIdToken().then(function(idToken) {  // <------ Check this line
+              console.log(idToken); // It shows the Firebase token now
+              return idToken;
+          })
         } else {
             dispatch(logout())
         }

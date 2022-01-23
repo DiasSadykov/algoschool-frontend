@@ -3,7 +3,7 @@ import axios from 'axios'
 import { setFetchingSubmission, setSubmissionStatus } from './submission';
 import { SubmissionStatus } from "../Reducers/submission";
 import { setProblemAccepted } from "../_api/firebase";
-import problems from '../problems.json';
+import { getCourse } from "../_api/backend"
 export const SET_PROBLEMS = "SET_PROBLEMS";
 export const SET_CODE_FOR_PROBLEM = "SET_CODE_FOR_PROBLEM";
 
@@ -22,10 +22,10 @@ export const setCodeForProblem = (id, code) => ({
   }
 });
 
-export async function fetchProblems(dispatch, getState) {
-    axios.get('https://online-judge-problems.s3.eu-central-1.amazonaws.com/problems.json')
+export async function fetchCourse(dispatch, getState) {
+    getCourse()
       .then(function (response) {
-        dispatch(setProblems(problems.courseBlocks))
+        dispatch(setProblems(response.data.courseBlocks))
       })
       .catch(function (error) {
         console.log(error);

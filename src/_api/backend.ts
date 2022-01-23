@@ -10,7 +10,7 @@ const api = axios.create({
 })
 
 export const setToken = (token: string) => {
-  api.defaults.headers.common['Authorization'] = `Bearer ${token}`
+  api.defaults.headers.common['Authorization'] = `${token}`
 }
 
 export const post = <T = any, R = AxiosResponse<T>>(
@@ -23,4 +23,8 @@ export const post = <T = any, R = AxiosResponse<T>>(
 
 export function getUserData(userId: number): Promise<AxiosResponse<any>> {
   return api.get(`userData?userId=${userId}`)
+}
+
+export function getCourse(): Promise<AxiosResponse<any>> {
+  return api.get(`/v1/course`)
 }
